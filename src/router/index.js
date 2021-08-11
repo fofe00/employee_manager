@@ -1,23 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Edit from '../views/Edit-emp.vue'
-import Newe from '../components/Newemployee.vue'
+//  import Home from '../views/Home.vue'
+//  import Edit from '../views/Edit-emp.vue'
+import Newemployee from '../components/Newemployee.vue'
+import Dashboard from '../components/Dashboard.vue'
+import Viewemployee from '../components/Viewemployee.vue'
+import Editemployee from '../components/Editemployee.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Dashboard',
+    component: Dashboard
   },
   {
-    path: '/n',
-    name: 'Newe',
-    component: Newe
+    path: '/new',
+    name: 'Newemployee',
+    component: Newemployee
   },
   {
-    path: '/edit',
-    name: 'Edit',
-    component: Edit
+    path: '/edit:employee_id',
+    name: 'Editemployee',
+    component: Editemployee
+  },
+  {
+    path: '/view',
+    name: 'Viewemployee',
+    component: Viewemployee
   },
   {
     path: '/about',
