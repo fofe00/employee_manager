@@ -1,6 +1,10 @@
 <template>
     <div id="dash">
-        <h1>dashboard page</h1>
+        <h4>dashboard page1</h4>
+      <ul class="collection with-header">
+        <li class="collection-header"><h4>Employee list</h4></li>
+        <li class="collection-item" v-for="employee in employees" :key="employee.employee_id">{{ employee.name }}</li>
+      </ul>
         <div class="fixed-action-btn">
             <router-link to="/new" class="btn-floating btn-large red">
                 <i class="bi bi-plus" style="font-size: 2rem; "></i>
@@ -19,8 +23,33 @@ export default {
     }
   },
   created () {
-    db.collection('employees').get().then(querySnapshot => {
+    /* db.collection('employees').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
+        console.log(doc.data())
+        const data = {
+          id: doc.id,
+          employee_id: doc.data().employee_id,
+          name: doc.data().name,
+          dept: doc.data().dept,
+          position: doc.data().position
+        }
+        this.employees.push(data)
+      })
+    }) */
+    const listUsers = db.collection('user')
+    listUsers.onSnapshot(docSnapshot => {
+      const foo = []
+      docSnapshot.forEach(doc => {
+        foo.push({ id: doc.id, name: doc.data().name })
+      })
+      foo.forEach(fo => {
+        console.log(fo.name)
+      })
+    })
+    const listEmployee = db.collection('employees')
+    listEmployee.onSnapshot(docSnapshot => {
+      this.employees = []
+      docSnapshot.forEach(doc => {
         const data = {
           id: doc.id,
           employee_id: doc.data().employee_id,
